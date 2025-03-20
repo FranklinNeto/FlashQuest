@@ -42,7 +42,11 @@ export const DeckProvider = ({ children }) => {
     return decks.find((deck) => deck.id === deckId)
   }
 
-  return <DeckContext.Provider value={{ decks, addDeck, addCard, getDeck }}>{children}</DeckContext.Provider>
+  const deleteDeck = (deckId) => {
+    setDecks(decks.filter((deck) => deck.id !== deckId))
+  }
+
+  return <DeckContext.Provider value={{ decks, addDeck, addCard, getDeck, deleteDeck }}>{children}</DeckContext.Provider>
 }
 
 export const useDeck = () => {
